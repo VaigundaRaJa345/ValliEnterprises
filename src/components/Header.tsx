@@ -48,7 +48,6 @@ export default function Header() {
             <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
             <Link href="/products" className="hover:text-primary transition-colors">Products</Link>
-            <Link href="/projects" className="hover:text-primary transition-colors">Projects</Link>
             <Link href="/contact" className="hover:text-primary transition-colors font-semibold">Contact</Link>
           </div>
 
