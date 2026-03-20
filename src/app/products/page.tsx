@@ -79,7 +79,7 @@ const productCategories = [
 function ProductContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || searchParams.get('intent') || "";
-  const dynamicIntent = getDynamicIntent(query);
+  const dynamicIntent = getDynamicIntent(query) || { pageTitle: "Expert Water Purification Solutions", pageDescription: "Providing honest advice and quality products." };
 
   return (
     <div className="space-y-24">

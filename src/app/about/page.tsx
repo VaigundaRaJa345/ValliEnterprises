@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Heart, Zap, Award, Users, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const beliefs = [
   "Clean water is essential for good health",
