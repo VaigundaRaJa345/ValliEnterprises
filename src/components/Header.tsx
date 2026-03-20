@@ -1,61 +1,96 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Phone, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobMenuOpen, setIsMobMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Products", href: "/products" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" }
+  ];
+
   return (
-    <header className="fixed top-0 z-50 w-full transition-all duration-300">
-      <div className="bg-primary/90 py-1 text-white shadow-sm backdrop-blur-md">
-        <div className="container mx-auto flex flex-wrap justify-between px-4 text-[10px] items-center sm:text-xs">
-          <div className="flex gap-4">
-            <a href="tel:8428665293" className="flex items-center gap-1 hover:text-sky-200 transition-colors">
-              <Phone className="h-3 w-3" />
-              <span>8428665293</span>
-            </a>
-            <a href="mailto:vallienterprises.vi@gmail.com" className="hidden items-center gap-1 hover:text-sky-200 transition-colors sm:flex">
-              <Mail className="h-3 w-3" />
-              <span>vallienterprises.vi@gmail.com</span>
-            </a>
-          </div>
-          <div className="flex items-center gap-1">
-            <MapPin className="h-3 w-3" />
-            <span>Chennai, Tamil Nadu</span>
-          </div>
-        </div>
-      </div>
-      <nav className="liquid-glass mx-4 mt-2 rounded-2xl sm:mx-8">
-        <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="relative h-12 w-12 group-hover:scale-110 transition-transform">
-              <Image 
-                src="/logo.png" 
-                alt="Valli Enterprises Logo" 
-                fill 
-                className="object-contain" 
-              />
+    <header className={`fixed top-0 z-[100] w-full transition-all duration-500 px-6 py-4`}>
+      <nav 
+        className={`max-w-7xl mx-auto rounded-[2rem] transition-all duration-500 px-8 py-3 ${
+          isScrolled 
+            ? "liquid-glass shadow-xl py-3 scale-[0.98]" 
+            : "bg-white/10 backdrop-blur-sm border border-white/10 py-5"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-10 w-10 group-hover:rotate-6 transition-transform">
+              <Image src="/logo.png" alt="Valli Enterprises" fill className="object-contain" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-extrabold leading-none tracking-tight text-foreground sm:text-2xl">
-                Valli <span className="text-gradient">Enterprises</span>
-              </span>
-              <span className="text-[10px] font-bold text-sky-500 uppercase tracking-[0.3em]">
-                Purity Redefined
-              </span>
+              <span className="text-xl font-extrabold text-foreground leading-tight tracking-tight">Valli <span className="text-gradient">Enterprises</span></span>
+              <span className="text-[9px] font-bold text-primary uppercase tracking-[0.3em]">Complete Water Solutions</span>
             </div>
           </Link>
 
-          <div className="hidden gap-8 text-sm font-medium text-foreground/80 md:flex">
-            <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-            <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-            <Link href="/products" className="hover:text-primary transition-colors">Products</Link>
-            <Link href="/contact" className="hover:text-primary transition-colors font-semibold">Contact</Link>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.label} 
+                href={link.href}
+                className="text-sm font-bold text-foreground/80 hover:text-primary transition-all relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              </Link>
+            ))}
+            <a href="tel:8428665293" className="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold shimmer-button shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+              <Phone className="h-4 w-4" />
+              8428665293
+            </a>
           </div>
 
-          <button className="md:hidden p-2 rounded-lg hover:bg-black/5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          {/* Mobile Toggle */}
+          <button className="md:hidden p-2 text-foreground" onClick={() => setIsMobMenuOpen(!isMobMenuOpen)}>
+            {isMobMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden fixed inset-x-6 top-32 z-50 p-8 glass-card rounded-[2.5rem] flex flex-col gap-6"
+          >
+            {navLinks.map((link) => (
+              <Link 
+                key={link.label} 
+                href={link.href}
+                onClick={() => setIsMobMenuOpen(false)}
+                className="text-2xl font-bold text-foreground text-center"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

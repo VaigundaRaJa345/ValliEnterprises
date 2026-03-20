@@ -1,48 +1,35 @@
 import type { Metadata } from "next";
-import { Outfit as Font_Outfit, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
-const fontOutfit = Font_Outfit({
-  variable: "--font-outfit",
+const outfit = Outfit({ 
   subsets: ["latin"],
-});
-
-const fontMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-heading',
 });
 
 export const metadata: Metadata = {
-  title: "Valli Enterprises | Water Solution Experts in Chennai",
-  description: "Specializing in Domestic, Commercial RO, Iron Removal, Water Softeners, STP & ETP Plants. Honest service, genuine parts, and expert water condition analysis in Chennai.",
-  keywords: ["RO Service Chennai", "Water Softener Chennai", "STP ETP Plants", "Iron Removal Filter", "Valli Enterprises"],
+  title: "Valli Enterprises | RO Purifier Service & Water Treatment Chennai",
+  description: "Valli Enterprises provides expert RO water purifier service, industrial plants, and community water solutions in Chennai with technical honesty.",
+  keywords: ["RO Service Chennai", "Water Purifier Service", "Industrial RO Plant", "STP Plant Chennai", "Valli Enterprises"],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${fontOutfit.variable} ${fontMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground transition-colors duration-300">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${outfit.variable} antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex flex-col`}>
         <Header />
-        <main className="relative flex-1 pt-32 pb-16 overflow-hidden">
-          {/* Subtle background glow elements */}
-          <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-sky-400/10 blur-[120px]" />
-          <div className="pointer-events-none absolute top-1/2 -right-40 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-blue-400/10 blur-[120px]" />
-          <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-indigo-300/10 blur-[120px]" />
-          
-          <div className="container relative mx-auto px-4 z-10">
-            {children}
-          </div>
+        <main className="flex-grow pt-24 page-transition">
+          {children}
         </main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

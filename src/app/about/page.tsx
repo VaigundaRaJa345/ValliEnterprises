@@ -12,100 +12,107 @@ const beliefs = [
   "Proper service is as important as the product itself"
 ];
 
-const assurances = [
-  { title: "Proper system selection", desc: "Scientific TDS & Water condition study", icon: ShieldCheck },
-  { title: "Professional installation", desc: "Expert technicians for every plant type", icon: Award },
-  { title: "Reliable service support", desc: "Always just a call away for maintenance", icon: Zap },
-  { title: "Maintenance options", desc: "Long-term support plans for stability", icon: Heart }
-];
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
 export default function AboutPage() {
   return (
-    <div className="space-y-32 mb-20">
-      {/* Hero Section */}
-      <section className="text-center space-y-6 max-w-4xl mx-auto pt-16">
-        <motion.div
-           initial={{ opacity: 0, scale: 0.9 }}
-           animate={{ opacity: 1, scale: 1 }}
-           className="text-sky-500 font-bold uppercase tracking-[0.3em] text-sm"
-        >
-           About Valli Enterprises
+    <div className="space-y-32 mb-40">
+      {/* Hero */}
+      <section className="text-center space-y-4 max-w-4xl mx-auto pt-16 px-6">
+        <motion.div initial="hidden" animate="visible" variants={fadeIn} className="text-primary font-black uppercase tracking-[0.4em] text-xs">
+           The Valli Story
         </motion.div>
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
-          Helping Chennai get <span className="text-gradient">Clean, Safe, and Healthy</span> water.
-        </h1>
-        <p className="text-xl text-foreground/60 leading-relaxed max-w-2xl mx-auto">
-           Valli Enterprises is a water purification sales and service company based in Chennai, helping families, businesses, and communities for daily water use.
-        </p>
+        <motion.h1 initial="hidden" animate="visible" variants={fadeIn} className="text-5xl md:text-8xl font-black tracking-tight text-foreground leading-[1]">
+          Engineering <span className="text-gradient">Pure Smiles.</span>
+        </motion.h1>
+        <motion.p initial="hidden" animate="visible" variants={fadeIn} className="text-xl text-foreground/60 max-w-2xl mx-auto font-medium leading-relaxed italic">
+          "Ensuring Chennai gets clean, safe, and healthy water through technical honesty and genuine service."
+        </motion.p>
       </section>
 
       {/* Narrative Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-         <div className="relative aspect-square rounded-[3rem] overflow-hidden liquid-glass">
-            <Image 
-              src="/images/hero-bg.png" 
-              alt="Expert Analysis" 
-              fill 
-              className="object-cover opacity-80" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 to-transparent" />
-         </div>
-         <div className="space-y-8">
-            <h2 className="text-4xl font-bold text-foreground">Our Scientific Approach</h2>
-            <p className="text-lg text-foreground/70 leading-relaxed">
-               We understand that water quality is not the same everywhere. Some areas have hard water, some have iron, and some have chemical contamination.
-            </p>
-            <p className="text-lg text-foreground/70 leading-relaxed">
-               Because of this, we first study your water condition and then recommend the right purification solution. We do not offer one common solution for everyone.
-            </p>
-            <div className="space-y-4 pt-4 border-t border-black/5">
-               <h3 className="text-xl font-bold text-foreground">What We Believe</h3>
-               <div className="grid grid-cols-1 gap-3">
-                  {beliefs.map(belief => (
-                    <div key={belief} className="flex items-center gap-3">
-                       <CheckCircle2 className="h-5 w-5 text-sky-500" />
-                       <span className="text-foreground/70 font-medium">{belief}</span>
-                    </div>
-                  ))}
-               </div>
+      <section className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+         <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative h-[600px] w-full"
+         >
+            <div className="absolute inset-0 liquid-glass rounded-[4rem] overflow-hidden shadow-2xl">
+               <Image 
+                  src="/images/technician.png" 
+                  alt="Scientific Water Study" 
+                  fill 
+                  className="object-cover" 
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
+            </div>
+            <div className="absolute -bottom-8 -right-8 p-10 glass-card rounded-[3rem] space-y-4 max-w-xs rotate-2">
+               <div className="h-12 w-12 rounded-2xl bg-primary flex items-center justify-center text-white"><ShieldCheck className="h-6 w-6" /></div>
+               <p className="text-2xl font-black text-foreground">Water Study First</p>
+               <p className="text-sm font-medium text-foreground/50 italic">"We analyze before we suggest."</p>
+            </div>
+         </motion.div>
+
+         <div className="space-y-10">
+            <h2 className="text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-tight">Since 2012, <span className="text-gradient">Integrity</span> is our Filter.</h2>
+            <div className="space-y-6 text-foreground/70 text-lg leading-relaxed font-medium">
+               <p>
+                  Valli Enterprises was founded with a single mission: to provide the people of Chennai with water solutions they can actually trust. In an industry often clouded by vague promises, we stand for technical clarity.
+               </p>
+               <p>
+                  We understand that each locality in Chennai—from the borewells of Porur to the corporation water of Anna Nagar—has unique chemical signatures. We don't believe in one-size-fits-all.
+               </p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-10 border-t border-primary/10">
+               {beliefs.map((belief, idx) => (
+                 <div key={idx} className="flex items-center gap-4">
+                    <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0"><CheckCircle2 className="h-5 w-5" /></div>
+                    <span className="text-foreground font-black text-sm uppercase tracking-tight">{belief}</span>
+                 </div>
+               ))}
             </div>
          </div>
       </section>
 
-      {/* Our Assurance */}
-      <section className="space-y-16">
-         <div className="text-center">
-            <h2 className="text-4xl font-bold text-foreground">Our <span className="text-gradient">Assurance</span></h2>
-         </div>
-         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {assurances.map((item, idx) => (
-               <motion.div 
-                 key={item.title}
-                 initial={{ opacity: 0, y: 20 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: idx * 0.1 }}
-                 className="glass-card flex flex-col items-center text-center space-y-4 p-8 rounded-[3rem]"
-               >
-                  <div className="p-4 rounded-full bg-sky-500/10 text-sky-500 ring-1 ring-sky-500/20">
-                     <item.icon className="h-8 w-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground leading-tight">{item.title}</h3>
-                  <p className="text-foreground/60 text-sm leading-relaxed">{item.desc}</p>
-               </motion.div>
-            ))}
-         </div>
+      {/* Stats Section */}
+      <section className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+          {[
+            { label: "Installations", val: "5000+", icon: Award },
+            { label: "Community ATMs", val: "12", icon: Users },
+            { label: "AMC Clients", val: "1800+", icon: Zap },
+            { label: "Years Strong", val: "12+", icon: Heart }
+          ].map((stat, i) => (
+             <motion.div 
+               key={i} 
+               viewport={{ once: true }}
+               initial="hidden" 
+               whileInView="visible" 
+               variants={fadeIn}
+               transition={{ delay: i * 0.1 }}
+               className="glass-card p-10 rounded-[3rem] text-center space-y-4"
+             >
+                <div className="h-16 w-16 bg-primary/10 text-primary rounded-3xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"><stat.icon className="h-8 w-8" /></div>
+                <div className="text-4xl font-black text-foreground">{stat.val}</div>
+                <div className="text-xs font-black text-foreground/40 uppercase tracking-[0.2em]">{stat.label}</div>
+             </motion.div>
+          ))}
       </section>
 
-      {/* Contact Link */}
-      <section className="liquid-glass rounded-[4rem] p-12 lg:p-20 text-center space-y-8 max-w-5xl mx-auto shadow-2xl">
-         <p className="text-xl font-medium text-foreground/80 leading-relaxed">
-            "At Valli Enterprises, we focus on honest service, correct guidance, and long-term support."
-         </p>
-         <div className="flex justify-center gap-6">
-            <Link href="/contact" className="px-8 py-4 rounded-xl bg-sky-500 text-white font-bold hover:scale-105 transition-all">
-               Talk to a Water Expert
-            </Link>
+      {/* Team CTA */}
+      <section className="container mx-auto px-6">
+         <div className="liquid-glass rounded-[4rem] p-12 lg:p-24 text-center space-y-8 relative overflow-hidden">
+            <h2 className="text-4xl lg:text-7xl font-black text-foreground tracking-tighter leading-tight">Need a <span className="text-gradient">Professional Opinion?</span></h2>
+            <p className="text-2xl font-bold text-foreground/60 max-w-2xl mx-auto italic">"Our technicians are trained to solve, not just sell. Hire an expert for your RO service today."</p>
+            <div className="flex justify-center flex-wrap gap-8 pt-10">
+               <Link href="/contact" className="px-12 py-6 rounded-3xl bg-primary text-white font-black text-xl shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all shimmer-button">
+                  Consult With Us
+               </Link>
+            </div>
          </div>
       </section>
     </div>
