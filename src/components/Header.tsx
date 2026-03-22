@@ -28,13 +28,13 @@ export default function Header() {
     <header className={`fixed top-0 z-[100] w-full transition-all duration-500 px-6 py-4`}>
       <nav
         className={`max-w-7xl mx-auto rounded-[2rem] transition-all duration-500 px-8 py-3 ${isScrolled
-            ? "liquid-glass shadow-xl py-3 scale-[0.98]"
-            : "bg-white/10 backdrop-blur-sm border border-white/10 py-5"
+          ? "liquid-glass shadow-xl py-3 scale-[0.98]"
+          : "bg-white/10 backdrop-blur-sm border border-white/10 py-5"
           }`}
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center group">
-            <div className="relative h-62 w-250 md:h-16 md:w-64 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+            <div className="relative h-62 w-250 md:h-62 md:w-250 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
               <Image
                 src="/header-logo.png"
                 alt="Valli Enterprises"
