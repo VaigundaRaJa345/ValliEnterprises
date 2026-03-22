@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "Valli Enterprises | RO Purifier Service & Water Treatment Chennai",
   description: "Valli Enterprises provides expert RO water purifier service, industrial plants, and community water solutions in Chennai with technical honesty.",
   keywords: ["RO Service Chennai", "Water Purifier Service", "Industrial RO Plant", "STP Plant Chennai", "Valli Enterprises"],
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

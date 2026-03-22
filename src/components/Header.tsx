@@ -34,13 +34,15 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 group-hover:rotate-6 transition-transform">
-              <Image src="/logo.png" alt="Valli Enterprises" fill className="object-contain" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-foreground leading-tight tracking-tight">Valli <span className="text-gradient">Enterprises</span></span>
-              <span className="text-[9px] font-bold text-primary uppercase tracking-[0.3em]">Complete Water Solutions</span>
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-12 w-48 group-hover:scale-105 transition-transform duration-300">
+              <Image 
+                src="/header-logo.png" 
+                alt="Valli Enterprises" 
+                fill 
+                className="object-contain object-left" 
+                priority
+              />
             </div>
           </Link>
 

@@ -18,13 +18,14 @@ export default function Footer() {
       <div className="absolute inset-0 bg-primary/5 skewed-bg -z-10" />
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
         <div className="space-y-8 col-span-1 lg:col-span-1">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-12 w-12 group-hover:rotate-12 transition-transform">
-              <Image src="/logo.png" alt="Valli Enterprises" fill className="object-contain" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-black text-foreground leading-none tracking-tight">Valli <span className="text-gradient">Enterprises</span></span>
-              <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mt-1">Complete Water Solutions</span>
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-14 w-56 group-hover:scale-105 transition-transform duration-300">
+              <Image 
+                src="/header-logo.png" 
+                alt="Valli Enterprises" 
+                fill 
+                className="object-contain object-left" 
+              />
             </div>
           </Link>
           <p className="text-foreground/60 leading-relaxed font-bold italic text-sm">
