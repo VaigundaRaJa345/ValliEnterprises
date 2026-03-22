@@ -34,7 +34,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center group">
-            <div className="relative h-62 w-250 md:h-62 md:w-250 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+            <div className="relative h-62 w-100 md:h-62 md:w-100 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
               <Image
                 src="/header-logo.png"
                 alt="Valli Enterprises"
