@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
         <div className="space-y-8 col-span-1 lg:col-span-1">
           <Link href="/" className="flex items-center group">
-            <div className="relative h-14 w-56 group-hover:scale-105 transition-transform duration-300">
+            <div className="relative h-20 w-64 md:w-80 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_20px_rgba(30,144,255,0.1)]">
               <Image 
                 src="/header-logo.png" 
                 alt="Valli Enterprises" 

@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${outfit.variable} antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex flex-col`}>
         <Header />
-        <main className="flex-grow pt-24 page-transition">
+        <main className="flex-grow pt-32 page-transition">
           {children}
         </main>
         <Footer />
