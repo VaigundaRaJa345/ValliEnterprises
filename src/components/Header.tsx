@@ -26,21 +26,20 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 z-[100] w-full transition-all duration-500 px-6 py-4`}>
-      <nav 
-        className={`max-w-7xl mx-auto rounded-[2rem] transition-all duration-500 px-8 py-3 ${
-          isScrolled 
-            ? "liquid-glass shadow-xl py-3 scale-[0.98]" 
+      <nav
+        className={`max-w-7xl mx-auto rounded-[2rem] transition-all duration-500 px-8 py-3 ${isScrolled
+            ? "liquid-glass shadow-xl py-3 scale-[0.98]"
             : "bg-white/10 backdrop-blur-sm border border-white/10 py-5"
-        }`}
+          }`}
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center group">
-            <div className="relative h-12 w-44 md:h-16 md:w-64 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-              <Image 
-                src="/header-logo.png" 
-                alt="Valli Enterprises" 
-                fill 
-                className="object-contain object-left" 
+            <div className="relative h-62 w-250 md:h-16 md:w-64 group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+              <Image
+                src="/header-logo.png"
+                alt="Valli Enterprises"
+                fill
+                className="object-contain object-left"
                 priority
               />
             </div>
@@ -49,8 +48,8 @@ export default function Header() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
-              <Link 
-                key={link.label} 
+              <Link
+                key={link.label}
                 href={link.href}
                 className="text-sm font-bold text-foreground/80 hover:text-primary transition-all relative group"
               >
@@ -81,8 +80,8 @@ export default function Header() {
             className="md:hidden fixed inset-x-6 top-32 z-50 p-8 glass-card rounded-[2.5rem] flex flex-col gap-6"
           >
             {navLinks.map((link) => (
-              <Link 
-                key={link.label} 
+              <Link
+                key={link.label}
                 href={link.href}
                 onClick={() => setIsMobMenuOpen(false)}
                 className="text-2xl font-bold text-foreground text-center"
