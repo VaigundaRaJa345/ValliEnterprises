@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2 } from "lucide-react";
+import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2, Waves } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -166,16 +166,16 @@ export default function Home() {
           variants={fadeIn}
           className="text-center space-y-4 mb-20"
         >
-          <h2 className="text-4xl lg:text-6xl font-black text-foreground tracking-tight">Expert <span className="text-gradient">Solutions</span></h2>
-          <p className="text-foreground/50 font-bold uppercase tracking-widest text-sm">Professional Water Treatment for Every Need</p>
+          <h2 className="text-4xl lg:text-6xl font-black text-foreground tracking-tight">Water Problems? <span className="text-gradient">We've Got the Solution.</span></h2>
+          <p className="text-foreground/50 font-bold uppercase tracking-widest text-sm">From drinking water to complete water treatment solutions</p>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             { title: "Domestic RO Service", icon: Droplets, color: "bg-sky-500", desc: "Expert repair and filter change for all home purifier brands." },
-            { title: "Industrial RO Plants", icon: Building2, color: "bg-primary", desc: "Heavy-duty systems custom-built for factories and schools." },
+            { title: "Water Softener", icon: Waves, color: "bg-blue-600", desc: "Advanced ion-exchange systems to reduce hardness and scaling." },
+            { title: "Industrial RO Plants", icon: Building2, color: "bg-indigo-600", desc: "Heavy-duty systems custom-built for factories and schools." },
             { title: "AMC Service Plans", icon: Zap, color: "bg-yellow-500", desc: "Hassle-free yearly maintenance for continuous pure water." },
-            { title: "Water ATM", icon: Award, color: "bg-indigo-500", desc: "Community water solutions with smart card integration." },
             { title: "Iron Removal", icon: Search, color: "bg-orange-500", desc: "Specialized filtration for iron contamination in borewells." },
             { title: "STP/ETP Plants", icon: Heart, color: "bg-rose-500", desc: "Complete wastewater management systems for residential projects." }
           ].map((item, idx) => (
