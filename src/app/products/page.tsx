@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Droplets, Building2, Search, Zap, Heart, Phone, ArrowRight, Zap as ZapIcon, Droplets as WaterIcon, ShieldCheck, Waves } from "lucide-react";
+import { CheckCircle2, Droplets, Building2, Search, Zap, Heart, Phone, ArrowRight, Zap as ZapIcon, Droplets as WaterIcon, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
@@ -67,7 +67,7 @@ const productCategories = [
       "Increases life of appliances"
     ],
     idealFor: "Homes, apartments, hotels, industries",
-    icon: Waves,
+    icon: ZapIcon,
     image: "/images/hero_plant.png"
   },
   {

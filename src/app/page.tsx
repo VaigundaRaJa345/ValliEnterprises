@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2, Waves } from "lucide-react";
+import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -166,18 +166,19 @@ export default function Home() {
           variants={fadeIn}
           className="text-center space-y-4 mb-20"
         >
-          <h2 className="text-4xl lg:text-6xl font-black text-foreground tracking-tight">Water Problems? <span className="text-gradient">We've Got the Solution.</span></h2>
-          <p className="text-foreground/50 font-bold uppercase tracking-widest text-sm">From drinking water to complete water treatment solutions</p>
+          <h2 className="text-4xl lg:text-6xl font-black text-foreground tracking-tight">Expert <span className="text-gradient">Solutions</span></h2>
+          <p className="text-foreground/50 font-bold uppercase tracking-widest text-sm">Professional Water Treatment for Every Need</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory no-scrollbar -mx-6 px-6">
           {[
             { title: "Domestic RO Service", icon: Droplets, color: "bg-sky-500", desc: "Expert repair and filter change for all home purifier brands." },
-            { title: "Water Softener", icon: Waves, color: "bg-blue-600", desc: "Advanced ion-exchange systems to reduce hardness and scaling." },
-            { title: "Industrial RO Plants", icon: Building2, color: "bg-indigo-600", desc: "Heavy-duty systems custom-built for factories and schools." },
-            { title: "AMC Service Plans", icon: Zap, color: "bg-yellow-500", desc: "Hassle-free yearly maintenance for continuous pure water." },
+            { title: "Industrial RO Plants", icon: Building2, color: "bg-primary", desc: "Heavy-duty systems custom-built for factories and schools." },
+            { title: "Water Softener", icon: Zap, color: "bg-blue-600", desc: "Advanced ion-exchange softeners to reduce water hardness." },
             { title: "Iron Removal", icon: Search, color: "bg-orange-500", desc: "Specialized filtration for iron contamination in borewells." },
-            { title: "STP/ETP Plants", icon: Heart, color: "bg-rose-500", desc: "Complete wastewater management systems for residential projects." }
+            { title: "AMC Service Plans", icon: ShieldCheck, color: "bg-yellow-500", desc: "Hassle-free yearly maintenance for continuous pure water." },
+            { title: "STP/ETP Plants", icon: Heart, color: "bg-rose-500", desc: "Complete wastewater management systems for residential projects." },
+            { title: "Water ATM", icon: Award, color: "bg-indigo-500", desc: "Community water solutions with smart card integration." }
           ].map((item, idx) => (
             <motion.div 
               key={idx}
@@ -186,7 +187,7 @@ export default function Home() {
               viewport={{ once: true }}
               variants={fadeIn}
               transition={{ delay: idx * 0.1 }}
-              className="glass-card p-10 rounded-[3rem] space-y-6 group"
+              className="glass-card p-10 rounded-[3rem] space-y-6 group flex-shrink-0 w-[85vw] md:w-[400px] snap-center"
             >
               <div className={`h-16 w-16 rounded-3xl ${item.color} flex items-center justify-center text-white shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
                  <item.icon className="h-8 w-8" />
