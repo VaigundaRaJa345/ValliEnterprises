@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2 } from "lucide-react";
+import { CheckCircle2, Droplets, ShieldCheck, Heart, ArrowRight, Zap, Star, ChevronDown, Award, Users, Search, Building2, ChevronLeft as LeftIcon, ChevronRight as RightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -61,6 +61,17 @@ function FAQ() {
 }
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
+      setActiveIdx(index);
+    }
+  };
+
   return (
     <div className="space-y-32">
       {/* Hero Section */}
@@ -170,37 +181,81 @@ export default function Home() {
           <p className="text-foreground/50 font-bold uppercase tracking-widest text-sm">Professional Water Treatment for Every Need</p>
         </motion.div>
         
-        <div className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory no-scrollbar -mx-6 px-6">
-          {[
-            { title: "Domestic RO Service", icon: Droplets, color: "bg-sky-500", desc: "Expert repair and filter change for all home purifier brands." },
-            { title: "Industrial RO Plants", icon: Building2, color: "bg-primary", desc: "Heavy-duty systems custom-built for factories and schools." },
-            { title: "Water Softener", icon: Zap, color: "bg-blue-600", desc: "Advanced ion-exchange softeners to reduce water hardness." },
-            { title: "Iron Removal", icon: Search, color: "bg-orange-500", desc: "Specialized filtration for iron contamination in borewells." },
-            { title: "AMC Service Plans", icon: ShieldCheck, color: "bg-yellow-500", desc: "Hassle-free yearly maintenance for continuous pure water." },
-            { title: "STP/ETP Plants", icon: Heart, color: "bg-rose-500", desc: "Complete wastewater management systems for residential projects." },
-            { title: "Water ATM", icon: Award, color: "bg-indigo-500", desc: "Community water solutions with smart card integration." }
-          ].map((item, idx) => (
-            <motion.div 
-              key={idx}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              transition={{ delay: idx * 0.1 }}
-              className="glass-card p-10 rounded-[3rem] space-y-6 group flex-shrink-0 w-[85vw] md:w-[400px] snap-center"
-            >
-              <div className={`h-16 w-16 rounded-3xl ${item.color} flex items-center justify-center text-white shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
-                 <item.icon className="h-8 w-8" />
-              </div>
-              <div className="space-y-3">
-                <h3 className="text-2xl font-black text-foreground">{item.title}</h3>
-                <p className="text-foreground/60 leading-relaxed font-medium">{item.desc}</p>
-              </div>
-              <Link href={`/products#${item.title.toLowerCase().replace(/ /g, '-')}`} className="inline-flex items-center gap-2 font-black text-primary hover:gap-4 transition-all uppercase tracking-widest text-xs">
-                 Learn More <ArrowRight className="h-4 w-4" />
-              </Link>
-            </motion.div>
-          ))}
+        <div className="relative group/slider">
+          {/* Navigation Buttons - Desktop */}
+          <button 
+            onClick={() => {
+              if (scrollRef.current) {
+                scrollRef.current.scrollBy({ left: -400, behavior: "smooth" });
+              }
+            }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-20 h-14 w-14 rounded-full bg-white shadow-2xl flex items-center justify-center text-primary border border-primary/10 hover:scale-110 active:scale-95 transition-all opacity-0 group-hover/slider:opacity-100 hidden lg:flex"
+          >
+            <LeftIcon className="h-6 w-6" />
+          </button>
+          
+          <button 
+            onClick={() => {
+              if (scrollRef.current) {
+                scrollRef.current.scrollBy({ left: 400, behavior: "smooth" });
+              }
+            }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-20 h-14 w-14 rounded-full bg-white shadow-2xl flex items-center justify-center text-primary border border-primary/10 hover:scale-110 active:scale-95 transition-all opacity-0 group-hover/slider:opacity-100 hidden lg:flex"
+          >
+            <RightIcon className="h-6 w-6" />
+          </button>
+
+          <div 
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto gap-8 pb-12 snap-x snap-mandatory no-scrollbar -mx-6 px-6"
+          >
+            {[
+              { title: "Domestic RO Service", icon: Droplets, color: "bg-sky-500", desc: "Expert repair and filter change for all home purifier brands." },
+              { title: "Industrial RO Plants", icon: Building2, color: "bg-primary", desc: "Heavy-duty systems custom-built for factories and schools." },
+              { title: "Water Softener", icon: Zap, color: "bg-blue-600", desc: "Advanced ion-exchange softeners to reduce water hardness." },
+              { title: "Iron Removal", icon: Search, color: "bg-orange-500", desc: "Specialized filtration for iron contamination in borewells." },
+              { title: "AMC Service Plans", icon: ShieldCheck, color: "bg-yellow-500", desc: "Hassle-free yearly maintenance for continuous pure water." },
+              { title: "STP/ETP Plants", icon: Heart, color: "bg-rose-500", desc: "Complete wastewater management systems for residential projects." },
+              { title: "Water ATM", icon: Award, color: "bg-indigo-500", desc: "Community water solutions with smart card integration." }
+            ].map((item, idx) => (
+              <motion.div 
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                transition={{ delay: idx * 0.1 }}
+                className="glass-card p-10 rounded-[3rem] space-y-6 group flex-shrink-0 w-[80vw] md:w-[400px] snap-center"
+              >
+                <div className={`h-16 w-16 rounded-3xl ${item.color} flex items-center justify-center text-white shadow-xl transition-transform group-hover:scale-110 group-hover:rotate-6`}>
+                   <item.icon className="h-8 w-8" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-black text-foreground">{item.title}</h3>
+                  <p className="text-foreground/60 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+                <Link href={`/products#${item.title.toLowerCase().replace(/ /g, '-')}`} className="inline-flex items-center gap-2 font-black text-primary hover:gap-4 transition-all uppercase tracking-widest text-xs">
+                   Learn More <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Pagination Dots - Mobile/Tablet */}
+          <div className="flex justify-center gap-2 mt-4 lg:hidden">
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+              <div 
+                key={i} 
+                className={`h-2 rounded-full transition-all duration-300 ${activeIdx === i ? 'w-8 bg-primary' : 'w-2 bg-primary/20'}`}
+              />
+            ))}
+          </div>
+          
+          {/* Scroll Hint for Mobile */}
+          <div className="text-center mt-6 lg:hidden">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/30 animate-pulse">Swipe to see more solutions</p>
+          </div>
         </div>
       </section>
 
